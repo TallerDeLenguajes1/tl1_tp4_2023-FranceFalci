@@ -36,7 +36,7 @@ int Duracion; // entre 10 – 100
 
 int main(){
 
-    int cantidadTareas,realizada,i;
+    int cantidadTareas,realizada;
     char *aux = malloc(sizeof(char)* 250);
     printf("Cuantas tareas desea carhar");
     scanf("%d", &cantidadTareas);
@@ -46,14 +46,14 @@ int main(){
 
     //  Tarea **pTareas =  malloc(sizeof(Tarea*) * cantidadTareas);
 
-    for (i = 0; i < cantidadTareas; i++)
+    for (int i = 0; i < cantidadTareas; i++)
     {
         pTareas[i] = NULL;
         pTareasRealizadas = NULL;
     }
 
-    for(i = 0; i < cantidadTareas; i++){
-        pTareas[i] = (Tarea *)malloc(sizeof(Tarea));
+    for(int i = 0; i < cantidadTareas; i++){
+        pTareas[i] =malloc(sizeof(Tarea));
         pTareas[i]->TareaID = i+1;
         printf("ingrese descripcion");
         gets(aux);
@@ -66,28 +66,27 @@ int main(){
 
     }
 
-    int j=0;
-    for (int i = 0; i<cantidadTareas ; i++)
+   
+    for (int  i = 0; i<cantidadTareas ; i++)
     {
         printf(" realizo la tarea %d? (1=si  0=no)", pTareas[i]->TareaID);
         scanf("%d", &realizada);
         fflush(stdin);
-        if(realizada){
+        if(realizada == 1){
             // pTareas[i] = (Tarea *)malloc(sizeof(Tarea));
             // igualar directamente
             pTareasRealizadas[i] = pTareas[i];
-
             pTareas[i] =NULL;
-            printf("tarea realizada exitosamente!!!!!");
+
         }
     }
 
-    for (int i = 0; i<cantidadTareas ; i++){
-        if(pTareas[i] != NULL){
-        printf("Tarea pendientes %s", pTareas[i]->Descripcion);
+    // for (int i = 0; i<cantidadTareas ; i++){
+    //     if(pTareas[i] != NULL){
+    //     printf("Tarea pendientes %s", pTareas[i]->Descripcion);
 
-        } 
-    }
+    //     } 
+    // }
 
 
 
