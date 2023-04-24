@@ -16,8 +16,10 @@ void agregarTareas(int cantidad, tarea **pTareasPendientes);
 void realizarTareas(int cantidad, tarea **pTareasPendientes, tarea **pTareasRealizadas);
 void mostrarPendientes(int cantidad, tarea **pTareasPendientes);
 void mostrarRealizadas(int cantidad, tarea **pTareasRealizadas);
+void buscarTareasId(int cantidad, tarea **tareas, int idBuscado);
+void buscarTareasClave(int cantidad, tarea **tareas , char *palabra);
 
-int main()
+    int main()
 {
     srand(time(NULL));
     int canttareas;
@@ -33,14 +35,13 @@ int main()
     
     agregarTareas(canttareas, pTareasPendientes);
 
-    realizarTareas(canttareas,pTareasPendientes,pTareasRealizadas);
+    // realizarTareas(canttareas,pTareasPendientes,pTareasRealizadas);
+    // mostrarPendientes(canttareas,pTareasPendientes);
+    // mostrarRealizadas(canttareas,pTareasRealizadas);
+    // buscarTareasId(canttareas, pTareasPendientes, 1);
+    buscarTareasClave(canttareas, pTareasPendientes,"dos");
 
-    mostrarPendientes(canttareas,pTareasPendientes);
-    mostrarRealizadas(canttareas,pTareasRealizadas);
-
-
-
-    return 0;
+        return 0;
 }
 
 void inicializarTareas(int cantidad, tarea **tareas)
@@ -103,6 +104,33 @@ void mostrarRealizadas(int cantidad, tarea **pTareasRealizadas){
         if (pTareasRealizadas[i] != NULL)
         {
             printf("ID: %d\n", pTareasRealizadas[i]->tareaID);
+        }
+    }
+}
+
+void buscarTareasId(int cantidad, tarea **tareas, int idBuscado){
+    for (int i = 0; i < cantidad; i++)
+    {
+        if(tareas[i]->tareaID == idBuscado){
+            printf("descripcion: %s \n", tareas[i]->descripcion);
+            printf("duracion %d", tareas[i]->duracion);
+        }
+    }
+    
+}
+
+void buscarTareasClave(int cantidad, tarea **tareas, char *palabra)
+{
+    for (int i = 0; i < cantidad; i++)
+    {
+        printf("\nDescripcion de la tarea: %s", tareas[i]->descripcion);
+
+        if (strstr(tareas[i]->descripcion, palabra))
+        {
+            printf("\n------TAREA CON PALABRA CLAVE %s ENCONTRADA------\n", palabra);
+            printf("ID: %d", tareas[i]->tareaID);
+            printf("\nDescripcion: %s", tareas[i]->descripcion);
+            printf("\nDuracion: %d", tareas[i]->duracion);
         }
     }
 }
